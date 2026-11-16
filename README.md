@@ -1,111 +1,87 @@
 # Instituto Impulsiona
 
-Site estático do Instituto Impulsiona (organização da sociedade civil, Lei de Incentivo ao Esporte). HTML, CSS e JavaScript puros, sem build. Pensado para o GitHub Pages servir a raiz do repositório.
+Site estático do Instituto Impulsiona. HTML, CSS e JavaScript puros, sem build. A raiz do repositório é o que o GitHub Pages publica.
 
-O texto, os números, os contatos e os destinos de WhatsApp e e-mail vêm do site publicado em [www.institutoimpulsiona.com.br](https://www.institutoimpulsiona.com.br) em 16 de novembro de 2026. Não invente conteúdo: se um dado não está numa página abaixo, ele não estava no site.
+Os textos e números vêm dos projetos com autorização de captação e do site anterior. Não invente resultado, depoimento, parceiro ou dado que não esteja numa página.
+
+**Não coloque nomes, fotos ou trajetória das fundadoras.** Não crie seção de diretoria, governança ou organograma.
 
 ## Páginas
 
-| Endereço | Arquivo | O que tem |
-|---|---|---|
-| `/` | `index.html` | Início: hero, quem somos, método 3T, números e chamada |
-| `/sobre/` | `sobre/index.html` | Missão, visão, valores, diretoria e corpo técnico |
-| `/projetos/` | `projetos/index.html` | PIS, De Faixa em Faixa, Esporte na Estrada e JogaAção |
-| `/transparencia/` | `transparencia/index.html` | Prestação de contas, tabela, documentos e organograma |
-| `/apoiar/` | `apoiar/index.html` | Patrocínio (empresas) e doação ou voluntariado (pessoas) |
-| `/contato/` | `contato/index.html` | Contatos e formulário |
+| Endereço | Arquivo |
+|---|---|
+| `/` | `index.html` |
+| `/sobre/` | `sobre/index.html` |
+| `/projetos/` | `projetos/index.html` |
+| `/transparencia/` | `transparencia/index.html` |
+| `/apoiar/` | `apoiar/index.html` |
+| `/contato/` | `contato/index.html` |
 
-Cada projeto também pode ser linkado direto: `/projetos/#pis`, `/projetos/#de-faixa-em-faixa`, `/projetos/#esporte-na-estrada`, `/projetos/#jogaacao`.
+Cada projeto autorizado tem uma ficha em `/projetos/#pis`, `#pis-2`, `#de-faixa-em-faixa`, `#esporte-na-estrada`, `#jogaacao` e `#sonho-de-campea`. Elas que jogam e Centro de Ginástica ficam em `/projetos/#em-analise`, sem valor autorizado e sem botão de patrocínio.
 
-O menu, o rodapé e o botão verde de WhatsApp estão **copiados em cada HTML**. Se mudar um telefone ou um item de menu, altere em todas as páginas.
+O menu, o rodapé e o botão de WhatsApp estão copiados em cada HTML. Se mudar um telefone, mude em todas as páginas.
 
 ## Ver no computador
-
-Na pasta do repositório:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Abra `http://localhost:8080`. Use um servidor local: abrindo o arquivo direto no navegador, o vídeo do hero e alguns caminhos podem falhar.
+Abra `http://localhost:8080`.
 
 ## Editar um texto
 
-1. Abra o HTML da página (tabela acima) em qualquer editor.
-2. Procure a frase e troque só o texto visível, entre as tags.
-3. Não mude `class`, `href` nem os nomes dos arquivos de imagem, a menos que queira trocar o destino do link ou a imagem.
-4. Salve e atualize o navegador.
+Abra o HTML da página e troque só o que está visível entre as tags. Títulos aparecem em maiúsculas por causa do CSS: escreva normal.
 
-Títulos ficam em maiúsculas por causa do CSS. Escreva normal, por exemplo `Do impulso`. O site mostra `DO IMPULSO`.
+A ficha de cada projeto autorizado fica dentro de `<details class="ficha">`. É o lugar do nº SLI, do processo, do DOU, do prazo, do local, da manifestação e do valor autorizado. Não coloque conta bancária.
 
-O ano do rodapé (`© … Instituto Impulsiona`) é preenchido sozinho com o ano corrente. O CNPJ está escrito no rodapé: **53.381.079/0001-04**.
+Elas que jogam e Centro de Ginástica usam as logos em `assets/`, no bloco “Em análise”. Não mostre valor autorizado nem botão de patrocínio nesses dois.
 
-## Editar uma imagem ou o vídeo
+## Imagens e documentos
 
-As mídias ficam em `assets/`. Troque o arquivo **mantendo o mesmo nome**:
-
-| Arquivo | Onde aparece |
+| Arquivo | Uso |
 |---|---|
-| `assets/logo-horizontal-branco.png` | Logo do topo (fundo escuro) e do rodapé. Só existe a versão branca. |
+| `assets/logo-horizontal-branco.png` | Logo do topo e do rodapé |
 | `assets/logo-simbolo.png` | Marca d’água do hero |
-| `favicon.png` | Ícone da aba. É o símbolo reduzido. Se trocar o símbolo, gere de novo um PNG quadrado de 32 px com o mesmo nome. |
-| `assets/apple-touch-icon.png` | Ícone ao salvar na tela inicial do celular |
-| `assets/hero.mp4` | Vídeo de fundo da página inicial (sem som, em loop) |
-| `assets/logo-pis.png` | Card do PIS |
-| `assets/logo-de-faixa-em-faixa.png` | Card De Faixa em Faixa |
-| `assets/logo-esporte-na-estrada.png` | Card Esporte na Estrada |
-| `assets/logo-jogaacao.png` | Card JogaAção |
+| `favicon.png` | Ícone da aba |
+| `assets/hero.mp4` | Vídeo de fundo da home |
+| `assets/logo-pis.png` | PIS, 1º e 2º ciclos |
+| `assets/logo-de-faixa-em-faixa.png` | De Faixa em Faixa |
+| `assets/logo-esporte-na-estrada.png` | Esporte na Estrada |
+| `assets/logo-jogaacao.png` | JogaAção |
+| `assets/logo-sonho-de-campea.png` | Sonho de Campeã |
+| `assets/logo-elas-que-jogam.png` | Elas que jogam (em análise) |
+| `assets/logo-centro-de-ginastica.png` | Centro de Ginástica (em análise) |
+| `documentos/certidao-cndt-valida-27-01-2027.pdf` | CNDT, válida até 27/01/2027 |
+| `documentos/certidao-pgfn-valida-27-01-2027.pdf` | Certidão federal / PGFN, válida até 27/01/2027 |
 
-Use PNG com fundo transparente nos logos. O vídeo precisa ser MP4.
+Para trocar uma imagem, mantenha o mesmo nome do arquivo. Estatuto, ata, cartão CNPJ e prestação de contas **não** têm PDF no site: o botão Solicitar abre o WhatsApp.
 
-## WhatsApp, e-mail e Instagram
+## Contato
 
-Não troque o número “no olho”: os botões usam o link completo.
-
-- WhatsApp principal, flutuante, doações, patrocínio, voluntariado, “Solicitar” e formulário: `https://wa.me/5531997924630` — **(31) 99792-4630**
-- Segundo telefone, só no rodapé e em Contato: `https://wa.me/5531993898010` — **(31) 99389-8010**
-- E-mail: `contato@institutoimpulsiona.onmicrosoft.com`
+- E-mail: `contato@institutoimpulsiona.com.br`
+- WhatsApp principal: `https://wa.me/5531997924630` — (31) 99792-4630
+- Segundo WhatsApp: `https://wa.me/5531993898010` — (31) 99389-8010
 - Instagram: `https://instagram.com/institutoimpulsiona`
 
-Os botões “Solicitar”, “Quero patrocinar”, “Apoiar com R$ …” e “Quero ser voluntário” abrem o WhatsApp com a mensagem que já está no `href`. Se mudar a frase, troque também o texto depois de `?text=` (espaços viram `%20`). Os valores R$ 50, R$ 100, R$ 200 e Outro são ajustados pelo arquivo `js/site.js`.
-
-O formulário de Contato **não envia para um servidor**. “Enviar pelo WhatsApp” abre `wa.me/5531997924630`. “Enviar por e-mail” abre o programa de e-mail para `contato@institutoimpulsiona.onmicrosoft.com`, assunto `Contato pelo site — {nome}`.
+“Quero patrocinar” e “Destine até 7% do seu IR” abrem WhatsApp ou e-mail com a mensagem que já está no `href`. O formulário de contato não tem servidor: os botões abrem WhatsApp ou o programa de e-mail.
 
 ## Cores e fontes
 
-Estão no começo de `css/styles.css`:
+No começo de `css/styles.css`:
 
 - tinta `#15100F`, vermelho `#C8202E`, osso `#FBF7F2`, creme `#F2EAE0`, dourado `#E0A53A`
-- títulos: [Archivo](https://fonts.google.com/specimen/Archivo)
-- texto: [Inter](https://fonts.google.com/specimen/Inter)
-- ícones: Font Awesome 6.5.1 (carregado da internet)
+- texto dourado sobre fundo claro usa `#6E470C` (`--gold-text`), para o contraste
+- títulos: Archivo; texto: Inter; ícones: Font Awesome 6.5.1
 
-As duas fontes e os ícones precisam de conexão. Sem internet, o navegador usa uma fonte parecida do sistema e os ícones somem; o texto continua.
+Fontes e ícones vêm da internet. O vídeo pausa no botão “Pausar vídeo”. Quem prefere menos movimento no sistema não vê animação nem vídeo automático.
 
 ## Publicar
 
-O workflow `.github/workflows/pages.yml` publica a raiz do repositório no GitHub Pages a cada push na branch `main`.
+O workflow `.github/workflows/pages.yml` publica a raiz da `main`. Na primeira vez: **Settings → Pages → Source: GitHub Actions**.
 
-Na primeira vez, no GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**. Não é preciso escolher uma pasta. Depois do merge deste site na `main`, a Action “Publicar no GitHub Pages” sobe o site.
+Enquanto o domínio próprio não for apontado, o endereço é `https://karinebavi.github.io/institutoimpulsiona-site/`.
 
-Enquanto o domínio próprio não for apontado, o endereço é:
+**Não crie `CNAME` e não configure domínio personalizado ainda.** O `sitemap.xml`, o `robots.txt` e as meta tags de compartilhamento usam esse endereço do GitHub Pages. Quando o domínio entrar, troque essa URL nesses arquivos e no `<head>` de cada página.
 
-`https://karinebavi.github.io/institutoimpulsiona-site/`
-
-**Não crie um arquivo `CNAME` e não configure domínio personalizado ainda.** O DNS de `institutoimpulsiona.com.br` só deve mudar depois que este site for aprovado. O endereço sem `www` ainda não faz parte desta publicação.
-
-As imagens de compartilhamento (Open Graph) apontam para o logo nesse endereço do GitHub Pages. Quando o domínio próprio entrar no ar, vale atualizar a linha `og:image` no `<head>` de cada HTML, se quiser que a miniatura use o domínio novo. Não há URL canônica no HTML de propósito, para não fixar o domínio antes da hora.
-
-Se preferir publicar sem Actions: **Settings → Pages → Deploy from a branch → `main` → `/ (root)`**. O arquivo `.nojekyll` já está na raiz para o GitHub não reprocessar o site.
-
-## O que o site antigo não tinha
-
-Isto não foi inventado e continua de fora até alguém enviar o arquivo ou o texto:
-
-- PDFs de Estatuto Social, Ata de Fundação e Eleição, prestação de contas e Cartão CNPJ. Os botões só chamam no WhatsApp.
-- Nomes, fotos e currículos da diretoria e do corpo técnico.
-- Fotos dos projetos, além dos quatro logos e do vídeo do hero.
-- Logo horizontal colorido ou preto (só há a versão branca, para fundo escuro).
-- Endereço físico, CEP ou mapa. O bloco “Atuação nacional” é um cartão, não um mapa.
-- A frase **Atuação nacional ·** na página Contato termina no ponto médio, como no site de origem. Não foi completada.
-- Pix, boleto ou pagamento no site. Doação é só conversa no WhatsApp.
+Também dá para publicar em **Deploy from a branch → main → / (root)**. O arquivo `.nojekyll` já está na raiz.

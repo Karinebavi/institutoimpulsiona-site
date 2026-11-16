@@ -1,25 +1,24 @@
-/* Comportamentos do site: menu, ano, contadores, doação e formulário.
-   Destinos de WhatsApp e e-mail são os mesmos do site publicado. */
+/* Menu, vídeo, contadores, doação e formulário. Sem biblioteca. */
 (function () {
-  document.documentElement.classList.add("js");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) document.documentElement.classList.add("js");
 
   var WHATS = "5531997924630";
-  var EMAIL = "contato@institutoimpulsiona.onmicrosoft.com";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var EMAIL = "contato@institutoimpulsiona.com.br";
 
   var ano = document.getElementById("ano");
   if (ano) ano.textContent = String(new Date().getFullYear());
 
   var header = document.getElementById("header");
-  function setScrolled() {
-    if (header) header.classList.toggle("scrolled", window.scrollY > 40);
+  function onScroll() {
+    if (!header || header.classList.contains("is-solid")) return;
+    header.classList.toggle("scrolled", window.scrollY > 24);
   }
-  setScrolled();
-  window.addEventListener("scroll", setScrolled, { passive: true });
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
 
   var nav = document.getElementById("nav");
   var burger = document.getElementById("burger");
-
   function setMenu(open) {
     if (!nav || !burger) return;
     nav.classList.toggle("open", open);
@@ -30,7 +29,6 @@
       icon.classList.toggle("fa-xmark", open);
     }
   }
-
   if (burger && nav) {
     burger.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -53,10 +51,38 @@
   }
 
   var video = document.getElementById("heroVideo");
+  var pauseBtn = document.getElementById("heroPause");
+  function setPaused(paused) {
+    if (!pauseBtn) return;
+    pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+    var icon = pauseBtn.querySelector("i");
+    var label = pauseBtn.querySelector("span");
+    if (icon) icon.className = paused ? "fa-solid fa-play" : "fa-solid fa-pause";
+    if (label) label.textContent = paused ? "Reproduzir vídeo" : "Pausar vídeo";
+    pauseBtn.setAttribute("aria-label", paused ? "Reproduzir vídeo de fundo" : "Pausar vídeo de fundo");
+  }
   if (video) {
     video.muted = true;
-    var play = video.play();
-    if (play && typeof play.catch === "function") play.catch(function () {});
+    if (reduce) {
+      video.pause();
+      video.removeAttribute("autoplay");
+      setPaused(true);
+    } else {
+      var play = video.play();
+      if (play && play.catch) play.catch(function () { setPaused(true); });
+      setPaused(false);
+    }
+    if (pauseBtn) {
+      pauseBtn.addEventListener("click", function () {
+        if (video.paused) {
+          video.play();
+          setPaused(false);
+        } else {
+          video.pause();
+          setPaused(true);
+        }
+      });
+    }
   }
 
   var amounts = document.getElementById("amounts");
@@ -70,12 +96,12 @@
         });
         b.classList.add("active");
         b.setAttribute("aria-pressed", "true");
-        var valorSel = b.getAttribute("data-v");
-        var label = valorSel === "outro" ? "Apoiar (outro valor)" : "Apoiar com R$ " + valorSel;
-        var msg = valorSel === "outro"
+        var valor = b.getAttribute("data-v");
+        var label = valor === "outro" ? "Apoiar (outro valor)" : "Apoiar com R$ " + valor;
+        var msg = valor === "outro"
           ? "Olá! Quero apoiar o Instituto Impulsiona com uma doação. Pode me ajudar?"
-          : "Olá! Quero apoiar o Instituto Impulsiona com uma doação de R$ " + valorSel + ". Pode me ajudar?";
-        doarBtn.setAttribute("href", "https://wa.me/" + WHATS + "?text=" + encodeURIComponent(msg));
+          : "Olá! Quero apoiar o Instituto Impulsiona com uma doação de R$ " + valor + ". Pode me ajudar?";
+        doarBtn.href = "https://wa.me/" + WHATS + "?text=" + encodeURIComponent(msg);
         doarBtn.replaceChildren();
         var icon = document.createElement("i");
         icon.className = "fa-brands fa-whatsapp";
@@ -92,76 +118,68 @@
     form.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-via]");
       if (!btn) return;
-      enviarForm(btn.getAttribute("data-via"));
+      var nome = (document.getElementById("fNome").value || "").trim();
+      var email = (document.getElementById("fEmail").value || "").trim();
+      var msg = (document.getElementById("fMsg").value || "").trim();
+      var corpo = "Nome: " + (nome || "-") + "\nE-mail: " + (email || "-") + "\n\n" + (msg || "");
+      if (btn.getAttribute("data-via") === "whats") {
+        window.open("https://wa.me/" + WHATS + "?text=" + encodeURIComponent("Olá, Instituto Impulsiona!\n\n" + corpo), "_blank", "noopener");
+      } else {
+        window.location.href = "mailto:" + EMAIL
+          + "?subject=" + encodeURIComponent("Contato pelo site — " + (nome || ""))
+          + "&body=" + encodeURIComponent(corpo);
+      }
     });
   }
 
-  function enviarForm(via) {
-    var nome = (document.getElementById("fNome").value || "").trim();
-    var email = (document.getElementById("fEmail").value || "").trim();
-    var msg = (document.getElementById("fMsg").value || "").trim();
-    var corpo = "Nome: " + (nome || "-") + "\nE-mail: " + (email || "-") + "\n\n" + (msg || "");
-    if (via === "whats") {
-      window.open(
-        "https://wa.me/" + WHATS + "?text=" + encodeURIComponent("Olá, Instituto Impulsiona!\n\n" + corpo),
-        "_blank",
-        "noopener"
-      );
-    } else {
-      window.location.href = "mailto:" + EMAIL
-        + "?subject=" + encodeURIComponent("Contato pelo site — " + (nome || ""))
-        + "&body=" + encodeURIComponent(corpo);
-    }
+  function openHash() {
+    var id = (location.hash || "").slice(1);
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    var d = el.querySelector("details");
+    if (d) d.open = true;
   }
+  openHash();
+  window.addEventListener("hashchange", openHash);
+
+  if (reduce || !("IntersectionObserver" in window)) return;
 
   var reveals = document.querySelectorAll(".reveal");
-  if (reduce) {
-    reveals.forEach(function (el) { el.classList.add("in"); });
-    return;
-  }
-
   function animateValue(obj) {
+    if (obj.classList.contains("counted")) return;
     obj.classList.add("counted");
     var target = parseFloat(obj.getAttribute("data-count"));
-    var duration = 1500;
+    var duration = 1200;
     var decimals = parseInt(obj.getAttribute("data-decimals") || "0", 10);
     var prefix = obj.getAttribute("data-prefix") || "";
     var suffix = obj.getAttribute("data-suffix") || "";
-    var useSeparator = obj.getAttribute("data-sep") === "1";
+    var sep = obj.getAttribute("data-sep") === "1";
     var finalText = obj.textContent;
-    var startTime = null;
-
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      var ease = progress * (2 - progress);
-      var current = ease * target;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = p * (2 - p);
+      var current = eased * target;
       var formatted = current.toFixed(decimals);
-      if (useSeparator) formatted = parseInt(formatted, 10).toLocaleString("pt-BR");
+      if (sep) formatted = parseInt(formatted, 10).toLocaleString("pt-BR");
       else formatted = formatted.replace(".", ",");
       obj.textContent = prefix + formatted + suffix;
-      if (progress < 1) requestAnimationFrame(step);
+      if (p < 1) requestAnimationFrame(step);
       else obj.textContent = finalText;
     }
-
     obj.textContent = prefix + (decimals ? "0," + "0".repeat(decimals) : "0") + suffix;
     requestAnimationFrame(step);
   }
-
-  if (!("IntersectionObserver" in window)) {
-    reveals.forEach(function (el) { el.classList.add("in"); });
-    return;
-  }
-
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
       entry.target.classList.add("in");
       var num = entry.target.querySelector(".num");
-      if (num && !num.classList.contains("counted")) animateValue(num);
+      if (num) animateValue(num);
       observer.unobserve(entry.target);
     });
-  }, { threshold: 0.1 });
-
+  }, { threshold: 0.2 });
   reveals.forEach(function (el) { observer.observe(el); });
 })();
