@@ -72,6 +72,7 @@ No começo de `css/styles.css`:
 
 - tinta `#15100F`, vermelho `#C8202E`, osso `#FBF7F2`, creme `#F2EAE0`, dourado `#E0A53A`
 - texto dourado sobre fundo claro usa `#6E470C` (`--gold-text`), para o contraste
+- a faixa listrada (onda e zigue-zague) está em SVG: `assets/opart-wave.svg`, `assets/opart-chevron.svg` e `assets/opart-pinch.svg`
 - títulos: Archivo; texto: Inter; ícones: Font Awesome 6.5.1
 
 Fontes e ícones vêm da internet. O vídeo pausa no botão “Pausar vídeo”. Quem prefere menos movimento no sistema não vê animação nem vídeo automático.

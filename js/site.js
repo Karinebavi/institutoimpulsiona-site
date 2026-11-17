@@ -143,6 +143,36 @@
   openHash();
   window.addEventListener("hashchange", openHash);
 
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (!reduce && fine && window.innerWidth >= 960) {
+    var ring = document.createElement("div");
+    ring.className = "cursor-ring";
+    ring.setAttribute("aria-hidden", "true");
+    document.body.appendChild(ring);
+    document.body.classList.add("cursor-on");
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+    document.addEventListener("mousemove", function (e) {
+      tx = e.clientX;
+      ty = e.clientY;
+      if (!raf) raf = requestAnimationFrame(follow);
+    }, { passive: true });
+    function follow() {
+      raf = 0;
+      cx += (tx - cx) * 0.22;
+      cy += (ty - cy) * 0.22;
+      ring.style.left = cx + "px";
+      ring.style.top = cy + "px";
+      if (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4) raf = requestAnimationFrame(follow);
+    }
+    document.addEventListener("mouseover", function (e) {
+      document.body.classList.toggle("cursor-hot", !!e.target.closest("a, button, summary, .proj"));
+    });
+    window.addEventListener("scroll", function () {
+      var shift = (-window.scrollY * 0.15) % 240;
+      document.documentElement.style.setProperty("--opart-x", shift + "px");
+    }, { passive: true });
+  }
+
   if (reduce || !("IntersectionObserver" in window)) return;
 
   var reveals = document.querySelectorAll(".reveal");
