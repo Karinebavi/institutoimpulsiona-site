@@ -50,41 +50,6 @@
     });
   }
 
-  var video = document.getElementById("heroVideo");
-  var pauseBtn = document.getElementById("heroPause");
-  function setPaused(paused) {
-    if (!pauseBtn) return;
-    pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false");
-    var icon = pauseBtn.querySelector("i");
-    var label = pauseBtn.querySelector("span");
-    if (icon) icon.className = paused ? "fa-solid fa-play" : "fa-solid fa-pause";
-    if (label) label.textContent = paused ? "Reproduzir vídeo" : "Pausar vídeo";
-    pauseBtn.setAttribute("aria-label", paused ? "Reproduzir vídeo de fundo" : "Pausar vídeo de fundo");
-  }
-  if (video) {
-    video.muted = true;
-    if (reduce) {
-      video.pause();
-      video.removeAttribute("autoplay");
-      setPaused(true);
-    } else {
-      var play = video.play();
-      if (play && play.catch) play.catch(function () { setPaused(true); });
-      setPaused(false);
-    }
-    if (pauseBtn) {
-      pauseBtn.addEventListener("click", function () {
-        if (video.paused) {
-          video.play();
-          setPaused(false);
-        } else {
-          video.pause();
-          setPaused(true);
-        }
-      });
-    }
-  }
-
   var amounts = document.getElementById("amounts");
   var doarBtn = document.getElementById("doarBtnLink");
   if (amounts && doarBtn) {

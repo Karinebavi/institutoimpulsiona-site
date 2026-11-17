@@ -44,7 +44,7 @@ Elas que jogam e Centro de Ginástica usam as logos em `assets/`, no bloco “Em
 | `assets/logo-horizontal-branco.png` | Logo do topo e do rodapé |
 | `assets/logo-simbolo.png` | Marca d’água do hero |
 | `favicon.png` | Ícone da aba |
-| `assets/hero.mp4` | Vídeo de fundo da home |
+| `assets/hero-poster.jpg` | Foto parada do hero (um frame do vídeo original) |
 | `assets/logo-pis.png` | PIS, 1º e 2º ciclos |
 | `assets/logo-de-faixa-em-faixa.png` | De Faixa em Faixa |
 | `assets/logo-esporte-na-estrada.png` | Esporte na Estrada |
@@ -71,10 +71,9 @@ No começo de `css/styles.css`:
 
 - tinta `#15100F`, vermelho `#C8202E`, osso `#FBF7F2`, creme `#F2EAE0`, dourado `#E0A53A`
 - texto dourado sobre fundo claro usa `#6E470C` (`--gold-text`), para o contraste
-- a faixa listrada (onda e zigue-zague) está em SVG: `assets/opart-wave.svg`, `assets/opart-chevron.svg` e `assets/opart-pinch.svg`
 - títulos: Archivo; texto: Inter; ícones: Font Awesome 6.5.1
 
-Fontes e ícones vêm da internet. O vídeo pausa no botão “Pausar vídeo”. Quem prefere menos movimento no sistema não vê animação nem vídeo automático.
+Fontes e ícones vêm da internet. O hero é uma foto parada. Nada no site se move sozinho.
 
 ## Publicar
 
