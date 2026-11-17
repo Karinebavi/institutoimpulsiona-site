@@ -511,22 +511,8 @@ h1,h2,.h-hero,.h-sec,.num,.proj-name{font-stretch:72%}
   .stroke{color:transparent;-webkit-text-stroke:2px var(--red)}
   .h-hero .stroke,.on-dark .stroke{color:transparent;-webkit-text-stroke:2px #fff}
 }
-.ghost{
-  position:absolute;left:-2vw;top:8%;z-index:0;pointer-events:none;user-select:none;
-  font-family:var(--display);font-weight:900;font-stretch:62%;text-transform:uppercase;
-  font-size:clamp(5rem,18vw,14rem);line-height:.8;letter-spacing:-.06em;
-  color:transparent;-webkit-text-stroke:1px rgba(200,32,46,.28);
-}
 .section-mark,.stats-wrap,.band,.analysis{position:relative;overflow:hidden}
 .section-mark .wrap,.stats-wrap .wrap{position:relative;z-index:1}
-.athlete{
-  position:absolute;width:min(42vw,460px);aspect-ratio:1;left:-10%;bottom:-28%;
-  background:var(--red);pointer-events:none;z-index:0;
-  -webkit-mask:url("../assets/atleta-mask.png") center/contain no-repeat;
-  mask:url("../assets/atleta-mask.png") center/contain no-repeat;
-}
-.athlete-light{background:#fff;opacity:.28;left:auto;right:-6%;bottom:-30%}
-.athlete-hero{width:min(34vw,380px);left:auto;right:2%;bottom:16%;top:auto;background:#fff;opacity:.38;z-index:1}
 
 .hero{align-items:flex-end}
 .hero-media{inset:0}
@@ -593,8 +579,6 @@ body.cursor-hot .cursor-ring{width:56px;height:56px;margin:-28px 0 0 -28px;backg
 @media(max-width:1080px){
   .bento.proj-grid{grid-template-columns:1fr}
   .span-8,.span-7,.span-6,.span-5,.span-4{grid-column:auto}
-  .athlete{width:200px;opacity:.2}
-  .ghost{font-size:42vw;top:0}
   .h-hero{font-size:clamp(2.7rem,13vw,4.4rem)}
 }
 @media(hover:hover) and (pointer:fine){
