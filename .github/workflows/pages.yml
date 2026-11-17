@@ -3,7 +3,7 @@ name: Publicar no GitHub Pages
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  workflow_dispatch: # republicar pelo botão Run workflow, sem novo conteúdo
 
 permissions:
   contents: read
