@@ -60,8 +60,7 @@ Para trocar uma imagem, mantenha o mesmo nome do arquivo. Estatuto, ata, cartão
 ## Contato
 
 - E-mail: `contato@institutoimpulsiona.com.br`
-- WhatsApp principal: `https://wa.me/5531997924630` — (31) 99792-4630
-- Segundo WhatsApp: `https://wa.me/5531993898010` — (31) 99389-8010
+- WhatsApp: `https://wa.me/5531997924630` — (31) 99792-4630
 - Instagram: `https://instagram.com/institutoimpulsiona`
 
 “Quero patrocinar” e “Destine até 7% do seu IR” abrem WhatsApp ou e-mail com a mensagem que já está no `href`. O formulário de contato não tem servidor: os botões abrem WhatsApp ou o programa de e-mail.
