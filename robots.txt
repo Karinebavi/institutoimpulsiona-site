@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://karinebavi.github.io/institutoimpulsiona-site/sitemap.xml
